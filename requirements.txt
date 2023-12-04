@@ -4,4 +4,4 @@ python-dotenv
 pymongo[srv]
 httpx
 shortuuid
-pytest-httpx 
+pytest-httpx

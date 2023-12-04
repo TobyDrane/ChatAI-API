@@ -19,7 +19,7 @@ Installs the required environment to test locally.
 To create a new conversation and retrieve a conversation id to start chatting to you can `POST` the base conversations endpoint
 
 ```bash
-curl -X POST localhost:8000/conversation 
+curl -X POST localhost:8000/conversation
 ```
 
 This will return a response like below
@@ -37,7 +37,7 @@ This will return a response like below
 All messages are linked to conversations and are therefore persisted. When a conversation has been created and the conversation `id` generated you can create new messages
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{   
+curl -X POST -H "Content-Type: application/json" -d '{
   "message": "What is the current day?",
   "stream": "false"
 }' localhost:8000/conversation/completion/248f789b-28cd-4cea-8c33-a2621430f81b
@@ -61,7 +61,7 @@ You can stream the response back enabling the stream parameter within the body o
 ```bash
 curl -X POST -N -H "Content-Type: application/json" -d '{
   "message": "What is the current day?",
-  "stream": "true" 
+  "stream": "true"
 }' localhost:8000/conversation/completion/248f789b-28cd-4cea-8c33-a2621430f81b
 ```
 
