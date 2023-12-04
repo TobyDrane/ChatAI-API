@@ -1,4 +1,4 @@
-from unittest.mock import Mock, patch, call
+from unittest.mock import Mock
 from pytest_httpx import HTTPXMock
 
 from api.services.controller import (
