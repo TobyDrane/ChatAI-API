@@ -31,6 +31,13 @@ def get_all_conversations(db: Database) -> list[Conversation]:
     return list(conversations.find({}))
 
 
+def check_conversation_exists(
+    db: Database, conversation_id: str
+) -> Conversation | None:
+    conversations = db.get_collection("conversations")
+    return conversations.find_one({"id": UUID(conversation_id)})
+
+
 def insert_conversation_message(db: Database, message: Message, conversation_id: str):
     conversations = db.get_collection("conversations")
     try:

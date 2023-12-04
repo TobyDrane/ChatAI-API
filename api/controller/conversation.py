@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import StreamingResponse
+from fastapi import status as http_status
 
 from api.models.conversation import Conversation, ConversationCompletionRequest
 from api.models.message import Message
@@ -14,6 +15,7 @@ from api.adapters.mongodb_adapter import (
     insert_conversation,
     get_all_conversations,
     insert_conversation_message,
+    check_conversation_exists,
 )
 
 conversation_router = APIRouter(
@@ -42,6 +44,12 @@ async def create_conversation_completion(
     conversation_id: str,
 ):
     db = get_mongo_db_from_request(request)
+
+    if not check_conversation_exists(db, conversation_id):
+        raise HTTPException(
+            status_code=http_status.HTTP_404_NOT_FOUND, detail="Conversation not found"
+        )
+
     # Insert the users message into the DB
     message = Message(author="user", content=conversation_completion_request.message)
     insert_conversation_message(db, message, conversation_id)
