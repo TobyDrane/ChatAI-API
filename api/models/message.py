@@ -3,6 +3,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import Literal
 from pydantic import BaseModel, Field
+from pydantic import UUID4
 
 
 def datetime_now() -> datetime:
@@ -10,7 +11,7 @@ def datetime_now() -> datetime:
 
 
 class Message(BaseModel):
-    id: str = Field(default_factory=uuid.uuid4)
+    id: UUID4 = Field(default_factory=uuid.uuid4)
     author: Literal["assistant", "user"]
     content: str
     created_at: datetime = Field(default_factory=datetime_now)

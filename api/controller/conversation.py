@@ -41,8 +41,6 @@ async def create_conversation_completion(
     conversation_completion_request: ConversationCompletionRequest,
     conversation_id: str,
 ):
-    print(conversation_completion_request)
-
     db = get_mongo_db_from_request(request)
     # Insert the users message into the DB
     message = Message(author="user", content=conversation_completion_request.message)

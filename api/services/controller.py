@@ -5,7 +5,7 @@ from fastapi import status as http_status
 
 from api.adapters.openai_adapter import (
     generate_chat_completion,
-    generate_chat_completion_steam,
+    generate_chat_completion_stream,
 )
 from api.adapters.mongodb_adapter import insert_conversation_message
 
@@ -19,7 +19,7 @@ def conversation_message_completion_stream(
     db: Database,
 ) -> Generator[str, Any, None]:
     message_tokens = ""
-    for token in generate_chat_completion_steam(conversation_completion_request):
+    for token in generate_chat_completion_stream(conversation_completion_request):
         yield token
         message_tokens += token
 

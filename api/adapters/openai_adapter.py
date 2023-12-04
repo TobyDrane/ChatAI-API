@@ -11,7 +11,7 @@ from api.models.conversation import ConversationCompletionRequest
 URL = os.getenv("OPENAI_URL", "http://localhost:8080")
 
 
-def generate_chat_completion_steam(request: ConversationCompletionRequest):
+def generate_chat_completion_stream(request: ConversationCompletionRequest):
     with httpx.Client() as client:
         response = client.post(
             f"{URL}/v1/chat/completions", json=request.generate_message_payload()

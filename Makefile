@@ -13,7 +13,7 @@ openai-mock:
 db-setup:
 	docker run -d --name mongo -p 27017:27017 mongo
 
-setup: db-setup python-setup
+setup: db-setup openai-mock python-setup
 
 reqs:
 	. .venv/bin/activate
@@ -26,5 +26,11 @@ venv:
 	pyenv exec python -m venv .venv
 	make reqs
 
+api-run:
+	uvicorn api.entry:app --host 0.0.0.0 --port 8000
+
 api-dev:
 	uvicorn api.entry:app --host 0.0.0.0 --port 8000 --reload
+
+api-test:
+	pytest -s test/

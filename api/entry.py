@@ -14,7 +14,7 @@ try:
 except OSError:
     pass
 
-origins = ["http://localhost"]
+origins = ["http://localhost:3000"]
 
 
 @asynccontextmanager
@@ -23,7 +23,6 @@ async def lifespan(app: FastAPI):
     app.mongodb_client = pymongo.MongoClient(
         os.environ.get("MONGO_URI"), uuidRepresentation="standard"
     )
-    app.database = app.mongodb_client[os.environ.get("DB")]
 
     yield
 
