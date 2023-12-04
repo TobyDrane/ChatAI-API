@@ -1,0 +1,6 @@
+fastapi[all]
+pydantic
+python-dotenv
+pymongo[srv]
+httpx
+shortuuid
