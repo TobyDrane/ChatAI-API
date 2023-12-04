@@ -1,4 +1,5 @@
 fastapi[all]
+fastapi
 pydantic
 python-dotenv
 pymongo[srv]
